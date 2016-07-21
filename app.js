@@ -1,20 +1,25 @@
 var express = require('express');
 var swig = require('swig');
 var app = express();
+
+var routes = require('./routes/');
+app.use('/', routes);
+app.use(express.static(__dirname + '/public'));
+
 app.engine('html', swig.renderFile);
 app.set('view engine','html');
 app.set('views', __dirname + '/views');
 app.set('view cache',false);
 swig.setDefaults({cache: false});
 
-var locals = {
-    title: 'An Example',
-    people: [
-        { name: 'Gandalf'},
-        { name: 'Frodo' },
-        { name: 'Hermione'}
-    ]
-};
+// var locals = {
+//     title: 'An Example',
+//     people: [
+//         { name: 'Gandalf'},
+//         { name: 'Frodo' },
+//         { name: 'Hermione'}
+//     ]
+// };
 // swig.renderFile(__dirname + '/views/index.html', locals, function (err, output) {
 //     console.log(output);
 // });
@@ -25,12 +30,12 @@ var locals = {
 
 // app.use(mid);
 
-app.get('/', function (req, res) {
-  // var responseText = 'Hello World!<br>';
-  // responseText += '<small>Requested at: ' + req.returnString + '</small>';
-  // res.send(responseText);
-  res.render('index', locals);
-});
+// app.get('/', function (req, res) {
+//   // var responseText = 'Hello World!<br>';
+//   // responseText += '<small>Requested at: ' + req.returnString + '</small>';
+//   // res.send(responseText);
+//   res.render('index', locals);
+// });
 
 app.listen(3000);
 console.log('server listening');
