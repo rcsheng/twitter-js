@@ -2,6 +2,9 @@ var express = require('express');
 var swig = require('swig');
 var app = express();
 
+
+var socketio = require('socket.io');
+
 var routes = require('./routes/');
 app.use('/', routes);
 app.use(express.static(__dirname + '/public'));
@@ -37,5 +40,6 @@ swig.setDefaults({cache: false});
 //   res.render('index', locals);
 // });
 
-app.listen(3000);
+var server = app.listen(3000);
+var io = socketio.listen(server);
 console.log('server listening');
