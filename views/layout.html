@@ -89,10 +89,27 @@
       });
       // When 'new_tweet' events are fired, do something with the packaged tweet
       socket.on('newTweet', function (tweet) { 
-        console.log(tweet);
-        alert('Refreshing... check the console...');
-        // some logic to add the new tweet to the DOM…
+        console.log("new tweet got: ",tweet);
+        //alert('Refreshing... check the console...');
+        var tmp = "<a href=\"\/users\/" + tweet.name + "\">" + tweet.name + "<\/a> " + tweet.id + " - " + tweet.content + "";
+        //addHTML(tmp);
+        var tweetbox = document.getElementById('tweetbox');
+        var element = document.createElement('li');
+        element.innerHTML = tmp;
+        tweetbox.appendChild(element);
+        
       }); 
+      
+
+      function addMessage(message) {
+          var text = document.createTextNode(message),
+              el = document.createElement('li'),
+              messages = document.getElementById('tweetbox');
+
+
+          el.appendChild(text);
+          messages.appendChild(el);
+      }
     </script>
   </body>
 </html>

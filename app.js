@@ -6,7 +6,8 @@ var app = express();
 var socketio = require('socket.io');
 
 var routes = require('./routes/');
-app.use('/', routes);
+
+
 app.use(express.static(__dirname + '/public'));
 
 app.engine('html', swig.renderFile);
@@ -42,4 +43,6 @@ swig.setDefaults({cache: false});
 
 var server = app.listen(3000);
 var io = socketio.listen(server);
+
+app.use('/', routes(io));
 console.log('server listening');

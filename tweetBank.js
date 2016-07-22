@@ -3,7 +3,10 @@ var _ = require('lodash');
 var data = [];
 
 function add (name, content) {
-  data.push({ name: name, content: content, id:data.length});
+  var tweet = {name: name, content: content, id:data.length};
+  data.push(tweet);
+  return tweet;
+
 }
 
 function list () {
